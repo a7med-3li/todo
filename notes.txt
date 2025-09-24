@@ -1,0 +1,6 @@
+#Run this after changing the models
+
+alembic revision --autogenerate -m "your-change-message"
+alembic upgrade head
+
+------------------------------------------------------------------
