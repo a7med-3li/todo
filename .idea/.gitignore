@@ -1,3 +1,50 @@
-# Default ignored files
-/shelf/
-/workspace.xml
+# Python related
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# IDE/editor stuff
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables
+.env
+
+# Database files (only for local dev with SQLite)
+*.db
+*.sqlite3
+
+# Alembic migrations cache
+alembic/versions/*.pyc
+alembic/__pycache__/
+
+# Logs
+*.log
+
+# Coverage and testing
+.coverage
+htmlcov/
+.pytest_cache/
+.cache/
+
+# Frontend builds (if you add React/Vue later inside frontend/)
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# MacOS/Linux/Windows system files
+.DS_Store
+Thumbs.db
