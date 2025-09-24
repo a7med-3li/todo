@@ -19,11 +19,11 @@ class TodoCreate(TodoBase):
 
 # Schema for updating an existing Todo
 class TodoUpdate(TodoBase):
-    title: Optional[str]
+    title: Optional[str] = None
     description: Optional[str] = None
-    priority: Optional[Priority]
+    priority: Optional[Priority] = Priority.low
     category: Optional[str] = None
-    completed: Optional[bool]
+    completed: Optional[bool] = False
 
 
 # Schema for returning a Todo (DB object -> API output)

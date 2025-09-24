@@ -39,9 +39,31 @@ def read_todo(todo_id: int, db: Session = Depends(get_db)):
 
 
 # -----------------------
-# UPDATE
+# UPDATE (full replace with PUT)
 # -----------------------
 @router.put("/{todo_id}", response_model=schemas.todo.TodoOut)
+def replace_todo(todo_id: int, todo: schemas.todo.TodoCreate, db: Session = Depends(get_db)):
+    """
+    Full replace of a Todo.
+    Requires sending ALL fields again (title, description, completed, priority).
+    """
+    db_todo = crud_todo.get_todo(db, todo_id)
+    if not db_todo:
+        raise HTTPException(status_code=404, detail="Todo not found")
+
+    # overwrite everything explicitly
+    db_todo.title = todo.title
+    db_todo.description = todo.description
+    db_todo.priority = todo.priority
+    db.commit()
+    db.refresh(db_todo)
+    return db_todo
+
+
+# -----------------------
+# UPDATE // partial
+# -----------------------
+@router.patch("/{todo_id}", response_model=schemas.todo.TodoOut)
 def update_todo(todo_id: int, todo: schemas.todo.TodoUpdate, db: Session = Depends(get_db)):
     db_todo = crud_todo.update_todo(db, todo_id, todo)
     if not db_todo:
